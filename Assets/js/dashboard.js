@@ -24,9 +24,40 @@ function getInfo() {
         })
         .then(function (data) {
             //variable for where the information is going to display
-            // var todayContainerEl = document.getElementById("today-weather");
+             var todayContainerEl = document.getElementById("today-weather");
             // //empty out the div
-            // todayContainerEl = innerHTML = '';
+            //todayContainerEl = innerHTML = '';
+            
+
+            //make the information appear in the html
+            var cardEl = document.createElement("div");
+            $(cardEl).addClass("card");
+            var bodyEl = document.createElement("div")
+            $(bodyEl).addClass("body");
+            var titleEl = document.createElement("h1");
+            $(titleEl).addClass("title");
+            titleEl.textContent = data.name;
+            var tempEl = document.createElement("p");
+            $(tempEl).addClass("text");
+            tempEl.textContent = "Temperture: " + data.main.temp + " °F";
+            var humidityEl = document.createElement("p");
+            $(humidityEl).addClass("text");
+            humidityEl.textContent = "Humidity: " + data.main.humidity;
+            var windEl = document.createElement("p");
+            $(windEl).addClass("text");
+            windEl.textContent = "Wind Speed: " + data.wind.speed;
+            var uvEl = document.createElement("p");
+            $(uvEl).addClass("text");
+            uvEl.textContent = "UV index: "; 
+
+            todayContainerEl.appendChild(cardEl);
+            cardEl.appendChild(bodyEl);
+            bodyEl.appendChild(titleEl);
+            bodyEl.appendChild(tempEl);
+            bodyEl.appendChild(humidityEl);
+            bodyEl.appendChild(windEl);
+            bodyEl.appendChild(uvEl);
+
 
 
 
