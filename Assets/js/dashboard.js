@@ -10,14 +10,14 @@
  
 $("button").click(function () {
     getInfo();
-
+    //fiveDay();
 });
 
 
 function getInfo() {
     var weatherSearch = document.getElementById("search-input").value;
 
-    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + weatherSearch +
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + weatherSearch +
         "&appid=a10604c45c58c3bf1280eb707dbe4a72")
         .then(function (response) {
             return response.json()
@@ -25,11 +25,12 @@ function getInfo() {
         .then(function (data) {
             //variable for where the information is going to display
              var todayContainerEl = document.getElementById("today-weather");
-            // //empty out the div
+             //empty out the div
             //todayContainerEl = innerHTML = '';
             
 
             //make the information appear in the html
+            //creating elements and classes to hold the data fetched from weather
             var cardEl = document.createElement("div");
             $(cardEl).addClass("card");
             var bodyEl = document.createElement("div")
@@ -50,6 +51,7 @@ function getInfo() {
             $(uvEl).addClass("text");
             uvEl.textContent = "UV index: "; 
 
+            //appending all the information above into the html
             todayContainerEl.appendChild(cardEl);
             cardEl.appendChild(bodyEl);
             bodyEl.appendChild(titleEl);
@@ -58,21 +60,63 @@ function getInfo() {
             bodyEl.appendChild(windEl);
             bodyEl.appendChild(uvEl);
 
-
-
-
-            console.log(data);
+            //console.log(data);
         })
         .catch(function () {
 
         });
+        //creatng elements to hold the history displayed on the page after you type a city 
         var liEl = document.createElement("li");
         liEl.classList.add("list-group-item", "list-group-item-action");
         liEl.append(weatherSearch);
         document.querySelector(".history").appendChild(liEl);
+        
 
-        //console.log(weatherSearch);
 }
+
+// function fiveDay() {
+//     weatherSearch = document.getElementById("search-input").value;
+
+//     fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + weatherSearch + 
+//     "&appid=a10604c45c58c3bf1280eb707dbe4a72")
+//     .then(function(response) {
+//         return response.json()
+//     })
+//     .then(function(data) {
+//         var futureEl = document.getElementById("future-weather");
+
+//         var futureTitleEl = document.createElement("h2");
+//         $(futureTitleEl).textContent = "5-Day Forecast";
+        
+//         //make card for one of the days for the 5 day forecast
+//         var oneContainerEl = document.createElement("div");
+//         $(oneContainerEl).addClass("col-2");
+//         var oneCardEl = document.createElement("div");
+//         $(oneCardEl).addClass("card");
+//         var oneBodyEl = document.createElement("div");
+//         $(oneBodyEl).addClass("body");
+
+//         var oneTitleEl = document.createElement("h3");
+//         $(oneTitleEl).addClass("title");
+
+//         var oneTempEl = document.createElement("p");
+//         $(oneTempEl).addClass("text");
+//         var oneWindEl = document.createElement("p");
+//         $(oneWindEl).addClass("text");
+//         var oneHumidEl = document.createElement("p");
+//         $(oneHumidEl).addClass("text");
+        
+
+//         oneTempEl.textContent = "Tempeture: ";
+//         oneHumidEl.textContent = "Humidity: ";
+//         oneWindEl.textContent = "Wind Speed: ";
+
+        
+
+//         console.log(data);
+//     })
+
+// }
 
 //when you click the history
 $(".history").click(function() {
