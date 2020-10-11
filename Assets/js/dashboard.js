@@ -10,7 +10,7 @@
  
 $("button").click(function () {
     getInfo();
-    //fiveDay();
+    fiveDay();
 });
 
 
@@ -37,7 +37,7 @@ function getInfo() {
             $(bodyEl).addClass("body");
             var titleEl = document.createElement("h1");
             $(titleEl).addClass("title");
-            titleEl.textContent = data.name;
+            titleEl.textContent = "5-Day Forecast";
             var tempEl = document.createElement("p");
             $(tempEl).addClass("text");
             tempEl.textContent = "Temperture: " + data.main.temp + " °F";
