@@ -24,9 +24,9 @@ function getInfo() {
         })
         .then(function (data) {
             //variable for where the information is going to display
-             var todayContainerEl = document.getElementById("today-weather");
+             var todayEl = document.getElementById("today-weather");
              //empty out the div
-            //todayContainerEl = innerHTML = '';
+            //todayEl = innerHTML = '';
             
 
             //make the information appear in the html
@@ -37,7 +37,7 @@ function getInfo() {
             $(bodyEl).addClass("body");
             var titleEl = document.createElement("h1");
             $(titleEl).addClass("title");
-            titleEl.textContent = "5-Day Forecast";
+            titleEl.textContent = weatherSearch;
             var tempEl = document.createElement("p");
             $(tempEl).addClass("text");
             tempEl.textContent = "Temperture: " + data.main.temp + " °F";
@@ -52,7 +52,7 @@ function getInfo() {
             uvEl.textContent = "UV index: "; 
 
             //appending all the information above into the html
-            todayContainerEl.appendChild(cardEl);
+            todayEl.appendChild(cardEl);
             cardEl.appendChild(bodyEl);
             bodyEl.appendChild(titleEl);
             bodyEl.appendChild(tempEl);
@@ -82,11 +82,12 @@ function fiveDay() {
         return response.json()
     })
     .then(function(data) {
+        console.log(data);
         var futureEl = document.getElementById("future-weather");
 
         var futureTitleEl = document.createElement("h2");
         $(futureTitleEl).textContent = "5-Day Forecast";
-        for (var i = 0; i < data.list.length; i++) {
+        for (var i = 0; i < data.list.slice(1, 6).length; i++) {
         
         //make card for one of the days for the 5 day forecast
         var oneContainerEl = document.createElement("div");
@@ -107,10 +108,11 @@ function fiveDay() {
         $(oneHumidEl).addClass("text");
         
 
-        oneTempEl.textContent = "Tempeture: ";
+        oneTempEl.textContent = "Temp: " + data.list[i].main.temp + " °F";
         oneHumidEl.textContent = "Humidity: " + data.list[i].main.humidity;
         oneWindEl.textContent = "Wind Speed: " + data.list[i].wind.speed;
 
+        //futureEl.appendChild(futureTitleEl);
         futureEl.appendChild(oneContainerEl);
         oneContainerEl.appendChild(oneCardEl);
         oneCardEl.appendChild(oneBodyEl);
@@ -122,7 +124,6 @@ function fiveDay() {
         }
         
 
-        console.log(data);
     });
 
 }
