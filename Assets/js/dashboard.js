@@ -37,21 +37,26 @@ function getInfo() {
             $(bodyEl).addClass("body");
             var titleEl = document.createElement("h1");
             $(titleEl).addClass("title");
-            titleEl.textContent = weatherSearch;
             var tempEl = document.createElement("p");
             $(tempEl).addClass("text");
-            tempEl.textContent = "Temperture: " + data.main.temp + " °F";
             var humidityEl = document.createElement("p");
             $(humidityEl).addClass("text");
-            humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
             var windEl = document.createElement("p");
-            $(windEl).addClass("text");
-            windEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
+            $(windEl).addClass("text"); 
             var uvEl = document.createElement("p");
             $(uvEl).addClass("text");
-            uvEl.textContent = "UV index: "; 
-
+            var iconEl = document.createElement("img");
+             
+            //setting the information that goes within each element
+            titleEl.textContent = data.name + " (" + new Date().toLocaleDateString() + ")";
+            tempEl.textContent = "Temperture: " + data.main.temp + " °F";
+            humidityEl.textContent = "Humidity: " + data.main.humidity + " %";
+            windEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
+            uvEl.textContent = "UV index: ";
+            iconEl.setAttribute("src", "https://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+            
             //appending all the information above into the html
+            titleEl.appendChild(iconEl);
             todayEl.appendChild(cardEl);
             cardEl.appendChild(bodyEl);
             bodyEl.appendChild(titleEl);
@@ -106,8 +111,12 @@ function fiveDay() {
         $(oneWindEl).addClass("text");
         var oneHumidEl = document.createElement("p");
         $(oneHumidEl).addClass("text");
+
+        var iconEl = document.createElement("img");
+        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
         
 
+        oneTitleEl.textContent = new Date(data.list[i].dt_txt).toLocaleDateString();
         oneTempEl.textContent = "Temp: " + data.list[i].main.temp + " °F";
         oneHumidEl.textContent = "Humidity: " + data.list[i].main.humidity;
         oneWindEl.textContent = "Wind Speed: " + data.list[i].wind.speed;
@@ -115,8 +124,9 @@ function fiveDay() {
         //futureEl.appendChild(futureTitleEl);
         futureEl.appendChild(oneContainerEl);
         oneContainerEl.appendChild(oneCardEl);
-        oneCardEl.appendChild(oneBodyEl);
         oneBodyEl.appendChild(oneTitleEl);
+        oneBodyEl.appendChild(iconEl);
+        oneCardEl.appendChild(oneBodyEl);
         oneBodyEl.appendChild(oneTempEl);
         oneBodyEl.appendChild(oneWindEl);
         oneBodyEl.appendChild(oneHumidEl);
