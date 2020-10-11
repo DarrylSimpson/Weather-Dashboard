@@ -60,7 +60,7 @@ function getInfo() {
             bodyEl.appendChild(windEl);
             bodyEl.appendChild(uvEl);
 
-            //console.log(data);
+              //console.log(data);
         })
         .catch(function () {
 
@@ -86,6 +86,7 @@ function fiveDay() {
 
         var futureTitleEl = document.createElement("h2");
         $(futureTitleEl).textContent = "5-Day Forecast";
+        for (var i = 0; i < data.list.length; i++) {
         
         //make card for one of the days for the 5 day forecast
         var oneContainerEl = document.createElement("div");
@@ -107,8 +108,8 @@ function fiveDay() {
         
 
         oneTempEl.textContent = "Tempeture: ";
-        oneHumidEl.textContent = "Humidity: ";
-        oneWindEl.textContent = "Wind Speed: ";
+        oneHumidEl.textContent = "Humidity: " + data.list[i].main.humidity;
+        oneWindEl.textContent = "Wind Speed: " + data.list[i].wind.speed;
 
         futureEl.appendChild(oneContainerEl);
         oneContainerEl.appendChild(oneCardEl);
@@ -118,11 +119,11 @@ function fiveDay() {
         oneBodyEl.appendChild(oneWindEl);
         oneBodyEl.appendChild(oneHumidEl);
         
-
+        }
         
 
         console.log(data);
-    })
+    });
 
 }
 
