@@ -1,7 +1,7 @@
-<!--
+
 # Weather Dashboard
 
-With this Weather Dashboard you can see a weather outlook for multiple cities.
+With this Weather Dashboard you can see a weather outlook for multiple cities. Also the five day forecast for the city youre searching.
 
 ## What My Page Does
 
@@ -19,15 +19,14 @@ With this Weather Dashboard you can see a weather outlook for multiple cities.
 
 
 ## Code I Used
-* In this web app, I used a combination of HTML, CSS, and JavaScript. Utilizing a weather API to call on the weather forecasts.
+* In this web app, I used a combination of HTML, JavaScript, and a little CSS. Relying mainly on Bootstrap for styling. Utilizing a weather API to call on the weather forecasts.
 
 
 ## Images of My Page
 
-![ScreenShot1of4]()
-![ScreenShot2of4]()
-![ScreenShot3of4]()
-![ScreenShot4of4]()
+![ScreenShot1of4](Assets/images/image01.png)
+![ScreenShot2of4](Assets/images/image02.png)
+
 
 
 
